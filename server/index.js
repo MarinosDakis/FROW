@@ -17,7 +17,7 @@ app.use(cors());
 app.use("/posts", postRoutes);
 
 app.get("/", (req, res) => {
-    res.send("Hello to memories API");
+    res.send("Hello to FROW API");
 });
 
 //connecting to database and running it (Mongodb)
