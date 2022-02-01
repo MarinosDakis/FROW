@@ -1,17 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Welcome from '../src/pages/Home.js';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+function App() {
+  return (
+    // This is a browser router, a browser router allows us to dynamically add paths
+      <div className="App">
+          <BrowserRouter>
+              <div>
+                <Route exact path='/' component={Welcome} />
+              </div>
+          </BrowserRouter>
+      </div>
+  );
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+export default App;
