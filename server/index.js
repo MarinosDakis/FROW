@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 
-import postRoutes from "./routes/posts.js";
+import frowRoutes from "./routes/frow.js";
 
 const app = express();
 dotenv.config();
@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
 
 // every route inside postRoutes will start with /posts
-app.use("/posts", postRoutes);
+app.use("/frow", frowRoutes);
 
 app.get("/", (req, res) => {
     res.send("Hello to FROW API");
