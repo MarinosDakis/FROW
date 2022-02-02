@@ -1,5 +1,6 @@
 import React from 'react';
-import { Avatar, Card, CardHeader, Grid, Typography } from '@material-ui/core';
+import { Avatar, Card, CardHeader } from '@material-ui/core';
+import { Link } from "react-router-dom";
 import profilePic from "./profile_pic_placeholder.png";
 import useStyles from "./styles";
 
@@ -8,8 +9,9 @@ export default function ProfileBoxComponent(props) {
 
     const classes = useStyles();
 
+    // TOADD
     return (
-        <Card sx={{ maxWidth: 345 }} className={classes.card}>
+        <Card component={Link} to="/designers" sx={{ maxWidth: 345 }} className={classes.card}>
             <CardHeader
                 avatar={<Avatar src={profilePic} aria-label={`${name}-profile-pic`} />}
                 title={name}
