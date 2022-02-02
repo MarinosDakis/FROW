@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Paper, Box, Typography } from '@material-ui/core';
-//import Divider from '@mui/material/Divider';
+import Divider from '@mui/material/Divider';
 import ProfileBoxComponent from './ProfileBoxComponent/ProfileBoxComponent.js';
 import { dummyData } from './dummyData.js'
 
@@ -16,6 +16,14 @@ export default function Home() {
           <Grid item className={classes.headerTopBottom}>
             <Typography className={classes.header}>Nashville Fashion Week</Typography>
             <Typography className={classes.header}>Saturday, 6pm EST</Typography>
+          </Grid>
+          <Grid item>
+            <Divider className={classes.root} />
+          </Grid>
+          <Grid>
+            <Box className={classes.headerTopBottom}>
+              <Typography className={classes.header}>Meet the Designers...</Typography>
+            </Box>
           </Grid>
           <Grid item>
             <Grid container spacing={2} className={classes.grid}>

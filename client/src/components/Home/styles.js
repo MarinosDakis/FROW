@@ -6,6 +6,10 @@ export default makeStyles((theme) => ({
         padding: theme.spacing(1),
         justifyContent: "center",
         display: "flex",
+        '&.MuiDivider-root': {
+            borderColor: "black",
+            marginBottom: "20px",
+        },
     },
     paper: {
         backgroundColor: "white",
@@ -14,7 +18,6 @@ export default makeStyles((theme) => ({
         border: "#7e7878 solid 1px",
         boxShadow: "0 4px 5px 5px rgba(0, 0, 0, .2)",
         maxWidth: 800,
-        minWidth: 300,
         paddingBottom: 30,
     },
     header: {
