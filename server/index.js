@@ -1,30 +1,19 @@
-import express from "express";
-import bodyParser from "body-parser";
-import mongoose from "mongoose";
-import cors from "cors";
-import dotenv from "dotenv";
-
-import frowRoutes from "./routes/frow.js";
-
+const express = require('express');
 const app = express();
-dotenv.config();
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const port = process.env.PORT || 5000;
 
-app.use(bodyParser.json({limit: "30mb", extended: true}));
-app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
+require('dotenv/config');
+ 
+const designerRoutes = require('./routes/designers');
+
+app.use(bodyParser.json({extended: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 
-// every route inside postRoutes will start with /posts
-app.use("/frow", frowRoutes);
+app.use('/frow', designerRoutes);
 
-app.get("/", (req, res) => {
-    res.send("Hello to FROW API");
+app.listen(port, () => {
+    console.log("Listening on port 5000");
 });
-
-//connecting to database and running it (Mongodb)
-const PORT = process.env.PORT;
-
-mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser:true, useUnifiedTopology: true })
-.then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
-.catch((error) => console.log(error.message));
-
-mongoose.set("useFindAndModify", false);
