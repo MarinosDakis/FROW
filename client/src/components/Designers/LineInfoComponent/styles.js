@@ -10,14 +10,11 @@ export default makeStyles((theme) => ({
             '&:hover': {
                 background: "#9066e7",
             },
+            textDecoration: "none",
         },
         '&.MuiCardContent-root': {
             minWidth: 50,
             maxWidth: 400,
         },
-        card: {
-            textDecoration: "none",
-        }
-
     },
 }));

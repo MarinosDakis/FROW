@@ -13,7 +13,7 @@ export default function DesignerDisplayComponent(props) {
 
   return (
     <Card component={Link} to="/products" className={classes.root}>
-      <CardContent className={`${classes.root} ${classes.card}`}>
+      <CardContent className={classes.root}>
         <Typography textAlign="center" gutterBottom variant="h4">{lineTitle}</Typography>
         <Typography textAlign="center" gutterBottom variant="h6">{lineSummary}</Typography>
       </CardContent>
