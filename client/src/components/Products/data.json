@@ -1,0 +1,45 @@
+[
+    {
+        "id": 1,
+        "title": "Title",
+        "img": "./images/ivory-dress.jpeg",
+        "desc": "This is the description",
+        "price": 5224
+    },
+    {
+        "id": 2,
+        "title": "Title",
+        "img": "./images/ivory-dress.jpeg",
+        "desc": "This is the description",
+        "price": 6554
+    },
+    {
+        "id": 3,
+        "title": "Title",
+        "img": "./images/ivory-dress.jpeg",
+        "desc": "This is the description",
+        "price": 9000
+    },
+    {
+        "id": 4,
+        "title": "Title",
+        "img": "./images/ivory-dress.jpeg",
+        "desc": "This is the description",
+        "price": 4000
+    },
+    {
+        "id": 5,
+        "title": "Title",
+        "img": "./images/ivory-dress.jpeg",
+        "desc": "This is the description",
+        "price": 5000
+    },
+    {
+        "id": 6,
+        "title": "Title",
+        "img": "./images/ivory-dress.jpeg",
+        "desc": "This is the description",
+        "price": 6000
+    }
+
+]
