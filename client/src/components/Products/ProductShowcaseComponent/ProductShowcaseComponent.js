@@ -10,6 +10,8 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
+import useStyles from "./styles";
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -24,6 +26,7 @@ const ExpandMore = styled((props) => {
 export default function ProductShowcaseComponent(props) {
   const { productName, productDescription, productPrice, productImg } = props;
   const [expanded, setExpanded] = React.useState(false);
+  const classes = useStyles();
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -34,6 +37,7 @@ export default function ProductShowcaseComponent(props) {
       <CardHeader
         title={productName}
         subheader={`$${productPrice}`}
+        className={classes.text}
       />
       <CardMedia
         component="img"
@@ -41,6 +45,7 @@ export default function ProductShowcaseComponent(props) {
         width="250"
         image={productImg}
         alt={`${productName}-img`}
+        className={classes.text}
       />
 
       <CardActions disableSpacing>

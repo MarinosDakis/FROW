@@ -4,50 +4,44 @@ import { useParams } from 'react-router-dom';
 import Data from './data.json';
 import dress from './images/dress.png';
 import Typography from '@material-ui/core/Typography';
-import { Button, Grid } from '@material-ui/core';
+import { Button, Grid, Box } from '@material-ui/core';
 import CreditCardIcon from '@material-ui/icons/CreditCard';
 import EmailIcon from '@material-ui/icons/Email';
 import ProductShowcaseComponent from './ProductShowcaseComponent/ProductShowcaseComponent';
 
+import useStyles from "./styles";
+
 function Products() {
 
+  const classes = useStyles();
+
   return (
-    <div className='ProductsContainer' style={{ paddingTop: '110px' }}>
-      <div className='TopBanner'>
-        <Grid container spacing={2}
-          alignItems="center"
-          justifyContent="center">
+    <Box className='ProductsContainer' style={{ paddingTop: '110px' }}>
 
-          <Grid item xs="auto">
-            <Button variant="contained" startIcon={<EmailIcon />}> Email Designer</Button>
-          </Grid>
-          <Grid item xs="auto">
-            <Button variant="contained" startIcon={<CreditCardIcon />}> Purchase Line</Button>
-          </Grid>
+      <Grid container spacing={2} alignItems="center" justifyContent="center">
+        <Grid item xs="auto">
+          <Button className={classes.root} variant="contained" startIcon={<EmailIcon />}> Email Designer</Button>
         </Grid>
-
-        <Grid container spacing={2}
-          alignItems="center"
-          justifyContent="center">
-          <Grid item xs="auto" >
-            <h3 style={{ fontWeight: "bold" }}>Fashion Line Name</h3>
-          </Grid>
-
+        <Grid item xs="auto">
+          <Button className={classes.root} variant="contained" startIcon={<CreditCardIcon />}> Purchase Line</Button>
         </Grid>
+      </Grid>
 
-        <Grid container spacing={2}
-          alignItems="center"
-          justifyContent="center">
-
-          <Grid item xs="auto">
-            <p style={{ fontWeight: "bold" }}>Total Price: </p>
-          </Grid>
+      <Grid container spacing={2} alignItems="center" justifyContent="center">
+        <Grid item xs="auto" >
+          <Typography variant="h1" style={{ fontWeight: 600 }}>Fashion Line Name</Typography>
         </Grid>
-      </div>
+      </Grid>
+
+      <Grid container spacing={2} alignItems="center" justifyContent="center">
+        <Grid item xs="auto">
+          <Typography variant="h4">Total Price: </Typography>
+        </Grid>
+      </Grid>
 
       <Grid container spacing={4}>
         {Data.map((product) => (
-          <Grid item key={product.id} xs={4} >
+          <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
             <ProductShowcaseComponent
               productName={product.title}
               productDescription={product.desc}
@@ -56,7 +50,7 @@ function Products() {
           </Grid>
         ))}
       </Grid>
-    </div>
+    </Box>
   );
 }
 
