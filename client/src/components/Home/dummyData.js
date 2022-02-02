@@ -27,11 +27,4 @@ export const dummyData = [
         location: "Milan, IT",
         profilePic: "",
       },
-      {
-        designerId: "x",
-        designer:"xxxxxxx xxxxxxx",
-        summary:"lalalalalalalalalalaal",
-        location: "xx, xx",
-        profilePic: "",
-      },
 ]

@@ -11,7 +11,7 @@ export default makeStyles((theme) => ({
         borderRadius: 15,
         border: "#7e7878 solid 1px",
         boxShadow: "0 4px 5px 5px rgba(0, 0, 0, .2)",
-        height: 500,
+        paddingBottom: 30,
     },
     header: {
         fontSize: 30,
