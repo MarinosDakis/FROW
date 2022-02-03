@@ -19,14 +19,14 @@ module.exports = {
         
         sqlEstablishConnection.query(sqlStatement, function (error, results) {
             if (error) {
-                res.send("ERROR");
+                return res.send("ERROR");
             };
             let designerResults = [];
             results.forEach((items) => {
                 designerResults.push(items);
             })
      
-            res.send(JSON.stringify(designerResults));
+            return res.send(JSON.stringify(designerResults));
         });
     },
 };

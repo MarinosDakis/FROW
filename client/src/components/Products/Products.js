@@ -100,9 +100,9 @@ function Products() {
             {designerProductData.map((product, index) => (
               <Grid item key={index} xs={12} sm={6} md={4} lg={4}>
                 <ProductShowcaseComponent
-                  productName={product.ProductTitle}
-                  productDescription={product.ProductDescription}
-                  productPrice={product.ProductPrice}
+                  productName={product.OutfitTitle}
+                  productDescription={product.Description}
+                  productPrice={product.Price}
                   productImg={dress} />
               </Grid>
             ))}
