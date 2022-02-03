@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Paper, Box, Typography, Card, Divider } from '@material-ui/core';
 import Errors from './Errors';
-import Success from './Success';
+import { useNavigate } from "react-router-dom";
 import Input from '../Login/Input';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import useStyles from "./styles";
@@ -10,7 +10,8 @@ import { Button } from '@material-ui/core';
 import {
     setCost, setServiceLinesForPurchase, decrementCost,
     incrementCost, incrementItems
-  } from '../../store/frowSlice';  
+} from '../../store/frowSlice';
+import { Navigate } from 'react-router-dom';
 
 function Payments() {
 
@@ -29,7 +30,9 @@ function Payments() {
     const [cardData, setCardData] = useState({ cardNumber: "", expDate: "", csv: "" });
     const [SuccessPageValue, setSuccessPageValue] = useState(false);
     const classes = useStyles();
+    var totalQuantity = 0;
     var errors = [];
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setCardData({ ...setCardData, [e.target.name]: e.target.value });
@@ -73,60 +76,51 @@ function Payments() {
 
         // if there's errors return false, otherwise return true
         if (errorCount > 0) return false;
-        if (errorCount) return true;
+        if (errorCount) handleSuccessPageValue();
 
     }
 
     return (
         <Box className={classes.root}>
-        {/*
             <Paper elevation={3} className={classes.paper}>
-                <Grid container spacing={2} style={{marginBottom: 15}}>
-                    <Grid item xs={12}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} style={{ marginTop: '30px' }}>
                         <Box textAlign="center" className={classes.brandContainer}>
-                            <Typography className={classes.text} variant='h4'>{dummyData.lineName}</Typography>
+                            <Typography className={classes.text} variant='h4'>Shopping Cart</Typography>
                             <ShoppingCartIcon className={classes.svg} />
                         </Box>
-                    </Grid>
-                    <Grid item xs>
-                        <Typography className={classes.text} variant='h6'>{`Price: $${dummyData.linePrice}`}</Typography>
-                    </Grid>
-                    <Grid item xs>
-                        <Typography className={classes.text} variant='h6'>{`Quantity: ${dummyData.lineQuantity}`}</Typography>
-
-        */}
-            <Paper variant="outlined" className={classes.paper}>
-                <Grid container spacing={2}>
-                    <Grid item xs={12} style={{marginTop: '30px'}}>
-                        <h1 style={{paddingLeft: '40px'}}>Shopping Cart</h1>
-                        {serviceLinesForPurchase.map((cartItem) => {
-                           return(
-                            <Grid item xs={12} style={{backgroundColor: 'black', color: 'white', margin: '10px 40px', borderRadius: '6px', padding: '5px 5px'}}>
-                                <h3 style={{textAlign: 'center', backgroundColor: 'grey'}}>{cartItem.line}</h3>
-                                <Grid container style={{textAlign: 'center'}}>
-                                    <Grid item xs={6}>
-                                        <p style={{marginTop: '0'}}><b>Quantity</b>: {cartItem.itemCount}</p>
+                        {serviceLinesForPurchase.map((cartItem, index) => {
+                            totalQuantity += cartItem.itemCount;
+                            return (
+                                <Grid key={index} item xs={12} style={{ backgroundColor: 'black', color: 'white', margin: '10px 40px', borderRadius: '6px', padding: '5px 5px' }}>
+                                    <h3 style={{ textAlign: 'center', backgroundColor: 'grey' }}>{cartItem.line}</h3>
+                                    <Grid container style={{ textAlign: 'center' }}>
+                                        <Grid item xs={6}>
+                                            <p style={{ marginTop: '0' }}><b>Quantity</b>: {cartItem.itemCount}</p>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <p style={{ marginTop: '0' }}><b>Amount:</b> ${cartItem.total}</p>
+                                        </Grid>
                                     </Grid>
-                                    <Grid item xs={6}>
-                                        <p style={{marginTop: '0'}}><b>Amount:</b> ${cartItem.total}</p>
-                                    </Grid>
-                                </Grid>
-                            </Grid>)
+                                </Grid>)
                         })}
-                        <Grid item xs={12} style={{marginBottom: '50px'}}>
-                            <h2 style={{paddingLeft: '40px'}}>Grand Total: ${cost}</h2>
+                        <Grid item xs>
+                            <Typography className={classes.text} variant='h6'>{`Total: $${cost}`}</Typography>
+                        </Grid>
+                        <Grid item xs>
+                            <Typography className={classes.text} variant='h6'>{`Quantity: ${totalQuantity}`}</Typography>
                         </Grid>
                     </Grid>
                 </Grid>
 
                 <Grid className={classes.grid}>
-                    <form className={classes.form} onSubmit={console.log(isValid())}>
+                    <form className={classes.form} onClick={handleSuccessPageValue === true && navigate('/success')}>
                         <Grid container spacing={2}>
                             {errors.length > 0 && <Errors className={classes.alert} errors={errors} />}
                             <Input name="creditCardNumber" label="Credit Card Number" handleChange={handleChange} autoFocus />
                             <Input name="creditCardCSV" label="CSV" handleChange={handleChange} type="password" half />
                             <Input name="creditCardExp" label="MM/YYYY" handleChange={handleChange} half />
-                            <Button style={{backgroundColor: "black"}} type="submit" variant='contained' fullWidth color="primary" className={classes.submit}>Purchase</Button>
+                            <Button style={{ backgroundColor: "black" }} type="submit" variant='contained' fullWidth color="primary" className={classes.submit}>Purchase</Button>
                         </Grid>
                     </form>
                 </Grid>
