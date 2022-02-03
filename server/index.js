@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require("path");
 const port = process.env.PORT || 5000;
+const path = require("path");
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -12,7 +13,9 @@ const designerRoutes = require('./routes/designers');
 const lineRoutes = require('./routes/lines');
 const productRoutes = require('./routes/products');
 
-app.use(express.static("public"));
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("build"));
+}
 app.use(bodyParser.json({extended: true}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
