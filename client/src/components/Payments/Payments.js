@@ -10,12 +10,12 @@ function Payments() {
 
     const column_style = {
         marginBottom: 15
-      };
+    };
 
-      const div_style = {
+    const div_style = {
         display: "grid",
         justifyContent: "center",
-      };
+    };
 
     const [lineData, setLineData] = useState(null);
     const [cardData, setCardData] = useState({ cardNumber: "", expDate: "", csv: "" });
@@ -90,33 +90,26 @@ function Payments() {
                 </Grid>
 
                 <Card>
-
-                <Grid className={classes.grid}>
-                <form autoComplete="off" noValidate onSubmit={isValid() === false && console.log("hi")}>
-                        {errors.length > 0 && <Errors className={classes.alert} errors={errors} />}
-                        <div style={div_style}>
-                            <div style={column_style} >
-                                <Input placeholder="Credit Card Number" name="creditCardNumber" label="Credit Card Number" value={cardData.cardNumber} type="password" onChange={handleChange} autoFocus />
+                    <Grid className={classes.grid}>
+                        <form autoComplete="off" noValidate onSubmit={isValid() === false && console.log("hi")}>
+                            {errors.length > 0 && <Errors className={classes.alert} errors={errors} />}
+                            <div style={div_style}>
+                                <div style={column_style} >
+                                    <Input placeholder="Credit Card Number" name="creditCardNumber" label="Credit Card Number" value={cardData.cardNumber} type="password" onChange={handleChange} autoFocus />
+                                </div>
+                                <div style={column_style} >
+                                    <Input placeholder="Credit Card CSV" name="creditCardCsv" label="CSV" value={cardData.csv} type="password" onChange={handleChange} />
+                                </div>
+                                <div style={column_style}>
+                                    <Input placeholder="Credit Card Expiration" name="creditCardExp" label="Confirm New Password" value={cardData.expDate} type="text" onChange={handleChange} />
+                                </div>
+                                <div style={column_style}>
+                                    <Button variant="contained" size="large" type="submit">Submit</Button>
+                                </div>
                             </div>
-                            <div style={column_style} >
-                                <Input placeholder="Credit Card CSV" name="creditCardCsv" label="CSV" value={cardData.csv} type="password" onChange={handleChange} />
-                            </div>
-                            <div style={column_style}>
-                                <Input placeholder="Credit Card Expiration" name="creditCardExp" label="Confirm New Password" value={cardData.expDate} type="text" onChange={handleChange} />
-                            </div>
-                            <div style={column_style}>
-                                <Button variant="contained" size="large" type="submit">Submit</Button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
                     </Grid>
-
-
-
-
-                    
                 </Card>
-
             </Paper>
         </Box>
     );
