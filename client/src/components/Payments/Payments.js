@@ -5,7 +5,12 @@ import Success from './Success';
 import Input from '../Login/Input';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import useStyles from "./styles";
+import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@material-ui/core';
+import {
+    setCost, setServiceLinesForPurchase, decrementCost,
+    incrementCost, incrementItems
+  } from '../../store/frowSlice';  
 
 function Payments() {
 
@@ -18,6 +23,8 @@ function Payments() {
         justifyContent: "center",
     };
 
+    const serviceLinesForPurchase = useSelector((state) => state.frowCounter.serviceLinesForPurchase);
+    const cost = useSelector((state) => state.frowCounter.cost);
     const [lineData, setLineData] = useState(null);
     const [cardData, setCardData] = useState({ cardNumber: "", expDate: "", csv: "" });
     const [SuccessPageValue, setSuccessPageValue] = useState(false);
@@ -34,6 +41,7 @@ function Payments() {
 
     useEffect(() => {
         setLineData(dummyData);
+        console.log(serviceLinesForPurchase);
     }, []);
 
     if (lineData === null) return null;
@@ -73,24 +81,32 @@ function Payments() {
         <Box className={classes.root}>
             <Paper variant="outlined" className={classes.paper}>
                 <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                        <Box className={classes.brandContainer} justifyContent="center" display="flex">
-                            <Typography className={classes.text} variant='h4'>{dummyData.lineName}</Typography>
-                            <ShoppingCartIcon className={classes.svg} />
-                        </Box>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Typography className={classes.text} variant='h6'>{`Price: $${dummyData.linePrice}`}</Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Typography className={classes.text} variant='h6'>{`Quantity: ${dummyData.lineQuantity}`}</Typography>
+                    <Grid item xs={12} style={{marginTop: '30px'}}>
+                        <h1 style={{paddingLeft: '40px'}}>Shopping Cart</h1>
+                        {serviceLinesForPurchase.map((cartItem) => {
+                           return(
+                            <Grid item xs={12} style={{backgroundColor: 'black', color: 'white', margin: '10px 40px', borderRadius: '6px', padding: '5px 5px'}}>
+                                <h3 style={{textAlign: 'center', backgroundColor: 'grey'}}>{cartItem.line}</h3>
+                                <Grid container style={{textAlign: 'center'}}>
+                                    <Grid item xs={6}>
+                                        <p style={{marginTop: '0'}}><b>Quantity</b>: {cartItem.itemCount}</p>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <p style={{marginTop: '0'}}><b>Amount:</b> ${cartItem.total}</p>
+                                    </Grid>
+                                </Grid>
+                            </Grid>)
+                        })}
+                        <Grid item xs={12} style={{marginBottom: '50px'}}>
+                            <h2 style={{paddingLeft: '40px'}}>Grand Total: ${cost}</h2>
+                        </Grid>
                     </Grid>
                 </Grid>
 
                 <Grid className={classes.grid}>
                     <form autoComplete="off" noValidate onSubmit={isValid() === false && console.log("hi")}>
                         <div style={div_style}>
-                            {errors.length > 0 && <Errors className={classes.alert} errors={errors} />}
+                            {/* {errors.length > 0 && <Errors className={classes.alert} errors={errors} />} */}
                             <div style={column_style} >
                                 <Input placeholder="Credit Card Number" name="creditCardNumber" label="Credit Card Number" value={cardData.cardNumber} type="text" onChange={handleChange} autoFocus />
                             </div>

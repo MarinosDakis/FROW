@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     root: {
-        marginTop: 100,
+        marginTop: 170,
         padding: theme.spacing(1),
         justifyContent: "center",
         display: "flex",
@@ -11,6 +11,7 @@ export default makeStyles((theme) => ({
         backgroundColor: "white",
         margin: "20px 0",
         borderRadius: 4,
+        width: '40%',
         border: "#7e7878 solid 1px",
         boxShadow: "0 4px 5px 5px rgba(0, 0, 0, .2)",
         paddingBottom: 30,

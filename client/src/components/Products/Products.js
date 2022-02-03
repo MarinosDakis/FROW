@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 import {
   setCost, setServiceLinesForPurchase, decrementCost,
-  incrementCost
+  incrementCost, incrementItems
 } from '../../store/frowSlice';
 
 import useStyles from "./styles";
@@ -28,6 +28,7 @@ function Products() {
   const currentLineTitle = useSelector((state) => state.frowCounter.currentLineTitle);
   const cost = useSelector((state) => state.frowCounter.cost);
   const currentDesignerDescription = useSelector((state) => state.frowCounter.currentDesignerDescription);
+  const serviceLinesForPurchase = useSelector((state) => state.frowCounter.serviceLinesForPurchase);
   const [designerProductData, setDesignerProductData] = useState([]);
   const [retrieveDesignerLineDataError, setRetrieveDesignerLineDataError] = useState(0);
   const [loading, setLoading] = useState(0);
@@ -49,9 +50,9 @@ function Products() {
         const responseData = response.data;
         let totalAmount = 0;
         responseData.forEach((productElement) => {
-          totalAmount += productElement.productPrice;
+          totalAmount += productElement.Price;
         });
-        setCalculateCost(totalAmount);
+        setCalculateCost(totalAmount.toFixed(2));
         setDesignerProductData(responseData);
       }
       setLoading(0);
@@ -63,7 +64,12 @@ function Products() {
   }
 
   const handleAddCart = () => {
-    //TBA
+      const serviceLinesForPurchaseTemp = [...serviceLinesForPurchase];
+      const purchaseInformation = {"line": `${currentLineTitle} - ${currentDesignerName}`, "itemCount": designerProductData.length, "total": calculateCost};
+      serviceLinesForPurchaseTemp.push(purchaseInformation);
+      dispatch(incrementCost(Number(calculateCost)));
+      dispatch(setServiceLinesForPurchase(serviceLinesForPurchaseTemp));
+      dispatch(incrementItems(1));
   }
 
   useEffect(() => {
@@ -73,11 +79,11 @@ function Products() {
   return (
     <Box className={classes.root}>
       <Grid container>
-        <Box className='ProductsContainer' style={{ paddingTop: '20px', margin: '0 10%' }}>
+        <Box className='ProductsContainer' style={{ paddingTop: '100px', margin: '0 10%' }}>
 
           <Grid container spacing={2} justifyContent="center">
             <Grid item xs="auto" >
-              <Typography variant="h2" style={{ fontWeight: 600}}>{currentLineTitle}</Typography>
+              <Typography variant="h3" style={{ fontWeight: 600}}>{currentLineTitle}</Typography>
             </Grid>
           </Grid>
 
@@ -87,7 +93,7 @@ function Products() {
             </Grid>
           </Grid>
 
-          <Grid container spacing={2} justifyContent="center">
+          <Grid container spacing={2} justifyContent="center" style={{marginTop: '10px'}}>
             <Grid item xs="auto">
               <Button className={classes.button} component={Link} to="/contactform" variant="contained" startIcon={<EmailIcon />}> Email Designer</Button>
             </Grid>
@@ -96,7 +102,7 @@ function Products() {
             </Grid>
           </Grid>
 
-          <Grid container spacing={4}>
+          <Grid container spacing={4} style={{marginTop: '70px'}}>
             {designerProductData.map((product, index) => (
               <Grid item key={index} xs={12} sm={6} md={4} lg={4}>
                 <ProductShowcaseComponent
