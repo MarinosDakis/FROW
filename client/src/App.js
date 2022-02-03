@@ -6,6 +6,7 @@ import Login from './components/Login/Login';
 import Navbar from './components/Navbar/Navbar';
 import Products from './components/Products/Products';
 import Designers from './components/Designers/Designers';
+import Payments from './components/Payments/Payments';
 
 const App = () => {
     return (
@@ -17,6 +18,8 @@ const App = () => {
                     <Route exact path='/login' element={<Login />} />
                     <Route exact path='/products' element={<Products />} />
                     <Route exact path='/designers' element={<Designers />} />
+                    <Route exact path='/designers' element={<Designers />} />
+                    <Route exact path='/payment' element={<Payments />} />
                 </Routes>
             </Container>
         </BrowserRouter>
