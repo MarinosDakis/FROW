@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     root: {
-        marginTop: 150,
+        marginTop: 100,
         padding: theme.spacing(1),
         flexGrow: 1,
         "&.MuiButton-contained": {
