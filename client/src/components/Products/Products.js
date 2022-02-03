@@ -28,7 +28,7 @@ function Products() {
         </Grid>
       </Grid>
 
-      <Grid container spacing={2} alignItems="center" justifyContent="center">
+      <Grid className={classes.root} container spacing={2} alignItems="center" justifyContent="center">
         <Grid item xs="auto" >
           <Typography variant="h1" style={{ fontWeight: 600 }}>Fashion Line Name</Typography>
         </Grid>
@@ -36,7 +36,7 @@ function Products() {
 
       <Grid container spacing={2} alignItems="center" justifyContent="center">
         <Grid item xs="auto">
-          <Typography variant="h4">Total Price: </Typography>
+          <Typography variant="h4" style={{ color: "white" }}>Total Price: </Typography>
         </Grid>
       </Grid>
 

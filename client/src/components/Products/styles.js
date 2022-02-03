@@ -12,6 +12,14 @@ export default makeStyles((theme) => ({
     "&.MuiButton-contained": {
       color: "black",
       backgroundColor: "white",
-  },
+    },
+    "&.MuiGrid-root": {
+      backgroundColor: "white",
+      marginTop: 10,
+    },
+    "&.MuiGrid-item": {
+      backgroundColor: "white",
+      marginTop: 10,
+    },
   },
 }));

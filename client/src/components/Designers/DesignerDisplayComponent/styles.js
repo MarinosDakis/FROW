@@ -4,16 +4,20 @@ export default makeStyles((theme) => ({
     root: {
         '&.MuiPaper-root': {
             display: "flex",
-            margin: "50px 0",
+            margin: 20,
+            borderRadius: 30,
         },
         '&.MuiCardMedia-root': {
             height: 250,
             width: 250,
         },
         '&.MuiCardContent-root': {
-            minWidth: 300,
-            maxWidth: 350,
-        }
-
-    },
+            minWidth: 100,
+        },
+        [theme.breakpoints.down("xs")]: {
+            '&.MuiCardMedia-root': {
+                height: 150,
+            },
+        },
+    }
 }));

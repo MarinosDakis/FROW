@@ -4,6 +4,8 @@ export default makeStyles((theme) => ({
     root: {
         marginTop: 100,
         padding: theme.spacing(1),
+        display: "flex",
+        justifyContent: "center",
     },
     paper: {
         backgroundColor: "white",
@@ -12,6 +14,7 @@ export default makeStyles((theme) => ({
         border: "#7e7878 solid 1px",
         boxShadow: "0 4px 5px 5px rgba(0, 0, 0, .2)",
         paddingBottom: 30,
+        maxWidth: 650,
     },
     header: {
         fontSize: 30,

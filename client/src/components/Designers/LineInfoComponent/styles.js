@@ -7,10 +7,13 @@ export default makeStyles((theme) => ({
             margin: "0px 50px",
             justifyContent: "center",
             cursor: "pointer",
-            '&:hover': {
-                background: "#f2f2f2e0",
-            },
+            backgroundColor: "black",
+            color: "white",
             textDecoration: "none",
+            '&:hover': {
+                backgroundColor: "white",
+                color: "black"
+            },
         },
         '&.MuiCardContent-root': {
             minWidth: 50,

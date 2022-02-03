@@ -1,7 +1,8 @@
 
 body {
     background-size: cover;
-    background-color: #d3b1d5;
+    background-color: #000;
+    /*#d3b1d5*/
 }
 
 body::-webkit-scrollbar {
