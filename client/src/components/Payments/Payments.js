@@ -6,12 +6,10 @@ import Input from '../Login/Input';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import useStyles from "./styles";
 import { useSelector, useDispatch } from 'react-redux';
+import CancelIcon from '@mui/icons-material/Cancel';
 import { Button } from '@material-ui/core';
-import {
-    setCost, setServiceLinesForPurchase, decrementCost,
-    incrementCost, incrementItems
-} from '../../store/frowSlice';
 import { Navigate } from 'react-router-dom';
+import {setCost, setServiceLinesForPurchase, decrementCost, incrementCost, incrementItems, decrementItems} from '../../store/frowSlice';
 
 function Payments() {
 
@@ -27,6 +25,7 @@ function Payments() {
     const serviceLinesForPurchase = useSelector((state) => state.frowCounter.serviceLinesForPurchase);
     const cost = useSelector((state) => state.frowCounter.cost);
     const [lineData, setLineData] = useState(null);
+    const dispatch = useDispatch();
     const [cardData, setCardData] = useState({ cardNumber: "", expDate: "", csv: "" });
     const [SuccessPageValue, setSuccessPageValue] = useState(false);
     const classes = useStyles();
@@ -46,6 +45,22 @@ function Payments() {
         setLineData(dummyData);
         console.log(serviceLinesForPurchase);
     }, []);
+
+    function removeCartItem(indexes) {
+        const serviceLinesForPurchaseTemp = [...serviceLinesForPurchase];
+        const newPurchases = [];
+        serviceLinesForPurchaseTemp.forEach((currentLine, index) => {
+            if (index !== indexes) {
+                newPurchases.push(currentLine);
+            }
+            else {
+                dispatch(decrementCost(Number(currentLine.total)));
+            }
+        });
+
+        dispatch(setServiceLinesForPurchase(newPurchases));
+        dispatch(decrementItems(1));
+    }
 
     if (lineData === null) return null;
 
@@ -89,6 +104,7 @@ function Payments() {
                             <Typography className={classes.text} variant='h4'>Shopping Cart</Typography>
                             <ShoppingCartIcon className={classes.svg} />
                         </Box>
+                        {/* <<<<<<< HEAD
                         {serviceLinesForPurchase.map((cartItem, index) => {
                             totalQuantity += cartItem.itemCount;
                             return (
@@ -101,32 +117,60 @@ function Payments() {
                                         <Grid item xs={6}>
                                             <p style={{ marginTop: '0' }}><b>Amount:</b> ${cartItem.total}</p>
                                         </Grid>
-                                    </Grid>
-                                </Grid>)
-                        })}
-                        <Grid item xs>
-                            <Typography className={classes.text} variant='h6'>{`Total: $${cost}`}</Typography>
-                        </Grid>
-                        <Grid item xs>
-                            <Typography className={classes.text} variant='h6'>{`Quantity: ${totalQuantity}`}</Typography>
-                        </Grid>
+======= 
                     </Grid>
+                    <Grid item xs>
+                        <Typography className={classes.text} variant='h6'>{`Price: $${dummyData.linePrice}`}</Typography>
+                    </Grid>
+                    <Grid item xs>
+                        <Typography className={classes.text} variant='h6'>{`Quantity: ${dummyData.lineQuantity}`}</Typography>
+
+        */}
+                        <Paper variant="outlined" className={classes.paper}>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} style={{ marginTop: '30px' }}>
+                                    <h1 style={{ paddingLeft: '40px' }}>Shopping Cart</h1>
+                                    {serviceLinesForPurchase.map((cartItem, index) => {
+                                        return (
+                                            <Grid item xs={12} key={index} style={{ backgroundColor: 'black', color: 'white', margin: '10px 40px', borderRadius: '6px', padding: '5px 5px' }}>
+                                                <Grid item xs={12} style={{ marginLeft: '0' }}>
+                                                    <Button onClick={() => removeCartItem(index)} style={{ color: 'white', fontSize: '.9em', textAlign: 'left' }}><CancelIcon /></Button>
+                                                </Grid>
+                                                <h3 style={{ textAlign: 'center', backgroundColor: 'grey', marginTop: '0' }}>{cartItem.line}</h3>
+                                                <Grid container style={{ textAlign: 'center' }}>
+                                                    <Grid item xs={6}>
+                                                        <p style={{ marginTop: '0' }}><b>Quantity</b>: {cartItem.itemCount}</p>
+                                                    </Grid>
+                                                </Grid>)
+                                                </Grid>
+                                    )})}
+
+                                                <Grid item xs>
+                                                    <Typography className={classes.text} variant='h6'>{`Total: $${cost.toFixed}`}</Typography>
+                                                </Grid>
+                                                <Grid item xs>
+                                                    <Typography className={classes.text} variant='h6'>{`Quantity: ${totalQuantity}`}</Typography>
+                                                </Grid>
+                                            </Grid>
                 </Grid>
 
-                <Grid className={classes.grid}>
-                    <form className={classes.form} onClick={handleSuccessPageValue === true && navigate('/success')}>
-                        <Grid container spacing={2}>
-                            {errors.length > 0 && <Errors className={classes.alert} errors={errors} />}
-                            <Input name="creditCardNumber" label="Credit Card Number" handleChange={handleChange} autoFocus />
-                            <Input name="creditCardCSV" label="CSV" handleChange={handleChange} type="password" half />
-                            <Input name="creditCardExp" label="MM/YYYY" handleChange={handleChange} half />
-                            <Button style={{ backgroundColor: "black" }} type="submit" variant='contained' fullWidth color="primary" className={classes.submit}>Purchase</Button>
+                                <Grid className={classes.grid}>
+                                    <form className={classes.form} onClick={handleSuccessPageValue === true && navigate('/success')}>
+                                        <Grid container spacing={2}>
+                                            {errors.length > 0 && <Errors className={classes.alert} errors={errors} />}
+                                            <Input name="creditCardNumber" label="Credit Card Number" handleChange={handleChange} autoFocus />
+                                            <Input name="creditCardCSV" label="CSV" handleChange={handleChange} type="password" half />
+                                            <Input name="creditCardExp" label="MM/YYYY" handleChange={handleChange} half />
+                                            <Button style={{ backgroundColor: "black" }} type="submit" variant='contained' fullWidth color="primary" className={classes.submit}>Purchase</Button>
+                                        </Grid>
+                                    </form>
+                                </Grid>
+                        </Paper>
                         </Grid>
-                    </form>
-                </Grid>
-            </Paper>
-        </Box>
-    );
+                        </Grid>
+                        </Paper>
+                        </Box>
+                    );
 
 }
 export default Payments;
