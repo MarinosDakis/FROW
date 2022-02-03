@@ -77,13 +77,13 @@ function Products() {
 
           <Grid container spacing={2} justifyContent="center">
             <Grid item xs="auto" >
-              <Typography variant="h2" style={{ fontWeight: 600, color: "white" }}>{currentLineTitle}</Typography>
+              <Typography variant="h2" style={{ fontWeight: 600}}>{currentLineTitle}</Typography>
             </Grid>
           </Grid>
 
           <Grid container spacing={2} justifyContent="center">
             <Grid item xs="auto">
-              <Typography variant="h5" style={{ color: "white" }}>Total Price: ${calculateCost}</Typography>
+              <Typography variant="h5">Total Price: ${calculateCost}</Typography>
             </Grid>
           </Grid>
 
