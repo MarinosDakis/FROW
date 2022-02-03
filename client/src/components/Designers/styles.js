@@ -2,7 +2,15 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     root: {
-        marginTop: '12%',
+        marginTop: 100,
+        padding: theme.spacing(1),
+        flexGrow: 1,
+        "&.MuiButton-contained": {
+            color: "black",
+            backgroundColor: "white",
+        },
+    },
+    button:{
         padding: theme.spacing(1),
         flexGrow: 1,
         "&.MuiButton-contained": {
@@ -28,6 +36,7 @@ export default makeStyles((theme) => ({
     grid: {
         display: "flex",
         justifyContent: "center",
+        marginTop: 10,
     },
 
 }));

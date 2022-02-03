@@ -8,28 +8,27 @@ export default makeStyles((theme) => ({
     justifyContent: "center",
     display: "flex",
     '&.MuiDivider-root': {
-        borderColor: "black",
-        marginBottom: "20px",
+      borderColor: "black",
+      marginBottom: "20px",
     },
-},
-paper: {
-  backgroundColor: "white",
-  margin: "20px 0",
-  borderRadius: 15,
-  border: "#7e7878 solid 1px",
-  boxShadow: "0 4px 5px 5px rgba(0, 0, 0, .2)",
-  maxWidth: 800,
-  paddingBottom: 30,
-  width: "500px",
-  height: "450px",
-},
-header: {
-  fontSize: 30,
-  paddingBottom: 20,
-  paddingTop: 20,
-  display: "flex",
-  justifyContent: "center",
-},
+  },
+  paper: {
+    backgroundColor: "white",
+    margin: "20px 0",
+    borderRadius: 15,
+    border: "#7e7878 solid 1px",
+    boxShadow: "0 4px 5px 5px rgba(0, 0, 0, .2)",
+    maxWidth: 800,
+    paddingBottom: 30,
+    width: "500px",
+  },
+  header: {
+    fontSize: 30,
+    paddingBottom: 20,
+    paddingTop: 20,
+    display: "flex",
+    justifyContent: "center",
+  },
   toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
@@ -39,21 +38,38 @@ header: {
   grid: {
     display: "flex",
     justifyContent: "center",
-},
-form: {
+  },
+  form: {
     display: "flex",
     justifyContent: "center",
     width: 200,
-},
-headerTopBottom: {
+  },
+  headerTopBottom: {
     marginTop: 30,
     marginBottom: 30,
-},
-input:{
-  width: 300
-},
-textfield: {
-  width: 300
-},
-  
+  },
+  input: {
+    width: 300
+  },
+  textfield: {
+    width: 300
+  },
+  button: {
+    padding: theme.spacing(1),
+    flexGrow: 1,
+    justifyContent: "center",
+    display: "flex",
+
+    "&.MuiButton-contained": {
+      color: "black",
+      backgroundColor: "white",
+      width: "100%",
+    },
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+    '&.MuiButtonBase-root': {
+      backgroundColor: "black",
+    },
+  },
 }));

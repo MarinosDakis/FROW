@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     root: {
-        marginTop: '15%',
+        marginTop: 100,
         padding: theme.spacing(1),
         justifyContent: "center",
         display: "flex",

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Paper, Box, Typography, Card, Input } from '@material-ui/core';
+import { Grid, Paper, Box, Typography, Card } from '@material-ui/core';
 import Errors from './Errors';
 import Success from './Success';
+import Input from '../Login/Input';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import useStyles from "./styles";
 import { Button } from '@material-ui/core';
@@ -92,8 +93,8 @@ function Payments() {
                 <Card>
                     <Grid className={classes.grid}>
                         <form autoComplete="off" noValidate onSubmit={isValid() === false && console.log("hi")}>
-                            {errors.length > 0 && <Errors className={classes.alert} errors={errors} />}
                             <div style={div_style}>
+                                {errors.length > 0 && <Errors className={classes.alert} errors={errors} />}
                                 <div style={column_style} >
                                     <Input placeholder="Credit Card Number" name="creditCardNumber" label="Credit Card Number" value={cardData.cardNumber} type="password" onChange={handleChange} autoFocus />
                                 </div>

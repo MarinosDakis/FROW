@@ -10,7 +10,7 @@ export default makeStyles((theme) => ({
     paper: {
         backgroundColor: "white",
         margin: "20px 0",
-        borderRadius: 15,
+        borderRadius: 4,
         border: "#7e7878 solid 1px",
         boxShadow: "0 4px 5px 5px rgba(0, 0, 0, .2)",
         minWidth: 800,
@@ -22,7 +22,7 @@ export default makeStyles((theme) => ({
     },
     svg: {
         '&.MuiSvgIcon-root': {
-            fontSize: 200,
+            fontSize: 30,
             textAlign: "center",
             marginBotton: 30,
         },
