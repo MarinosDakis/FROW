@@ -8,8 +8,8 @@ import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+//import ExpandMore from '@mui/material/ExpandMore';
+import { ExpandMore } from '@material-ui/icons';
 import useStyles from "./styles";
 
 const ExpandMore = styled((props) => {

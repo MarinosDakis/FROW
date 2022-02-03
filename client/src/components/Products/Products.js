@@ -8,6 +8,7 @@ import { Button, Grid, Box } from '@material-ui/core';
 import CreditCardIcon from '@material-ui/icons/CreditCard';
 import EmailIcon from '@material-ui/icons/Email';
 import ProductShowcaseComponent from './ProductShowcaseComponent/ProductShowcaseComponent';
+import { Link } from "react-router-dom";
 
 import useStyles from "./styles";
 
@@ -20,7 +21,7 @@ function Products() {
 
       <Grid container spacing={2} alignItems="center" justifyContent="center">
         <Grid item xs="auto">
-          <Button className={classes.root} variant="contained" startIcon={<EmailIcon />}> Email Designer</Button>
+          <Button component={Link} to="/contactform" className={classes.root} variant="contained" startIcon={<EmailIcon />}> Email Designer</Button>
         </Grid>
         <Grid item xs="auto">
           <Button className={classes.root} variant="contained" startIcon={<CreditCardIcon />}> Purchase Line</Button>

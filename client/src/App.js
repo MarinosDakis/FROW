@@ -5,7 +5,7 @@ import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import Navbar from './components/Navbar/Navbar';
 import Products from './components/Products/Products';
-import ContactForm from './components/Products/ContactForm';
+import ContactForm from './components/ContactForm/ContactForm';
 import Designers from './components/Designers/Designers';
 
 const App = () => {
