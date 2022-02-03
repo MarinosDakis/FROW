@@ -72,45 +72,40 @@ function Payments() {
     return (
         <Box className={classes.root}>
             <Paper variant="outlined" className={classes.paper}>
-                <Grid>
-                    <Box justifyContent="center" display="flex">
-                        <ShoppingCartIcon className={classes.svg} />
-                    </Box>
-                </Grid>
-
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
-                        <Typography className={classes.text} variant='h4'>{dummyData.lineName}</Typography>
+                        <Box className={classes.brandContainer} justifyContent="center" display="flex">
+                            <Typography className={classes.text} variant='h4'>{dummyData.lineName}</Typography>
+                            <ShoppingCartIcon className={classes.svg} />
+                        </Box>
                     </Grid>
                     <Grid item xs={6}>
                         <Typography className={classes.text} variant='h6'>{`Price: $${dummyData.linePrice}`}</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        <Typography className={classes.text} variant='h6'>{`Quantity: $${dummyData.lineQuantity}`}</Typography>
+                        <Typography className={classes.text} variant='h6'>{`Quantity: ${dummyData.lineQuantity}`}</Typography>
                     </Grid>
                 </Grid>
 
-                <Card>
-                    <Grid className={classes.grid}>
-                        <form autoComplete="off" noValidate onSubmit={isValid() === false && console.log("hi")}>
-                            <div style={div_style}>
-                                {errors.length > 0 && <Errors className={classes.alert} errors={errors} />}
-                                <div style={column_style} >
-                                    <Input placeholder="Credit Card Number" name="creditCardNumber" label="Credit Card Number" value={cardData.cardNumber} type="password" onChange={handleChange} autoFocus />
-                                </div>
-                                <div style={column_style} >
-                                    <Input placeholder="Credit Card CSV" name="creditCardCsv" label="CSV" value={cardData.csv} type="password" onChange={handleChange} />
-                                </div>
-                                <div style={column_style}>
-                                    <Input placeholder="Credit Card Expiration" name="creditCardExp" label="Confirm New Password" value={cardData.expDate} type="text" onChange={handleChange} />
-                                </div>
-                                <div style={column_style}>
-                                    <Button variant="contained" size="large" type="submit">Submit</Button>
-                                </div>
+                <Grid className={classes.grid}>
+                    <form autoComplete="off" noValidate onSubmit={isValid() === false && console.log("hi")}>
+                        <div style={div_style}>
+                            {errors.length > 0 && <Errors className={classes.alert} errors={errors} />}
+                            <div style={column_style} >
+                                <Input placeholder="Credit Card Number" name="creditCardNumber" label="Credit Card Number" value={cardData.cardNumber} type="password" onChange={handleChange} autoFocus />
                             </div>
-                        </form>
-                    </Grid>
-                </Card>
+                            <div style={column_style} >
+                                <Input placeholder="Credit Card CSV" name="creditCardCsv" label="CSV" value={cardData.csv} type="password" onChange={handleChange} />
+                            </div>
+                            <div style={column_style}>
+                                <Input placeholder="Credit Card Expiration" name="creditCardExp" label="Confirm New Password" value={cardData.expDate} type="text" onChange={handleChange} />
+                            </div>
+                            <div style={column_style}>
+                                <Button variant="contained" size="large" type="submit">Submit</Button>
+                            </div>
+                        </div>
+                    </form>
+                </Grid>
             </Paper>
         </Box>
     );

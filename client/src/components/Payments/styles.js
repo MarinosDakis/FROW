@@ -13,7 +13,6 @@ export default makeStyles((theme) => ({
         borderRadius: 4,
         border: "#7e7878 solid 1px",
         boxShadow: "0 4px 5px 5px rgba(0, 0, 0, .2)",
-        minWidth: 800,
         paddingBottom: 30,
         minHeight: 400,
     },
