@@ -66,23 +66,12 @@ function Products() {
       </Grid>
       <Box className='ProductsContainer' style={{ paddingTop: '20px', margin: '0 10%'}}>
 
-<<<<<<< Updated upstream
-      <Grid className={classes.root} container spacing={2} alignItems="center" justifyContent="center">
-        <Grid item xs="auto" >
-          <Typography variant="h1" style={{ fontWeight: 600 }}>Fashion Line Name</Typography>
-=======
         <Grid container spacing={2} alignItems="center" justifyContent="center" style={{paddingTop: '5%'}}>
           <Grid item xs="auto" >
             <Typography variant="h2" style={{ fontWeight: 600 }}>{currentLineTitle}</Typography>
           </Grid>
->>>>>>> Stashed changes
         </Grid>
 
-<<<<<<< Updated upstream
-      <Grid container spacing={2} alignItems="center" justifyContent="center">
-        <Grid item xs="auto">
-          <Typography variant="h4" style={{ color: "white" }}>Total Price: </Typography>
-=======
         <Grid container spacing={2} alignItems="center" justifyContent="center" style={{paddingTop: '10px'}}>
           <Grid item xs="auto">
             <Button component={Link} to="/contactform" className={classes.root} variant="contained" startIcon={<EmailIcon />}> Email Designer</Button>
@@ -90,7 +79,6 @@ function Products() {
           <Grid item xs="auto">
             <Button className={classes.root} variant="contained" startIcon={<CreditCardIcon />}> Purchase Line</Button>
           </Grid>
->>>>>>> Stashed changes
         </Grid>
 
         <Grid container spacing={2} alignItems="center" justifyContent="left" style={{paddingTop: '25px', paddingBottom: '10px'}}>

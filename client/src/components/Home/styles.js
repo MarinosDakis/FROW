@@ -14,11 +14,7 @@ export default makeStyles((theme) => ({
     paper: {
         backgroundColor: "white",
         margin: "20px 0",
-<<<<<<< Updated upstream
         borderRadius: 4,
-=======
-        borderRadius: 6,
->>>>>>> Stashed changes
         border: "#7e7878 solid 1px",
         boxShadow: "0 4px 5px 5px rgba(0, 0, 0, .2)",
         maxWidth: 700,
