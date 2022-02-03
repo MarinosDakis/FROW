@@ -49,7 +49,7 @@ export default function ProductShowcaseComponent(props) {
       />
 
       <CardActions disableSpacing>
-        <Typography>View Product Description</Typography>
+        <Typography></Typography>
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}

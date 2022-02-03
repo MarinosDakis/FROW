@@ -9,8 +9,8 @@ const Errors = ( {errors, half} ) => {
 
     return (
         <Grid item xs={12} sm={half ? 6 : 12}>
-        {errors.map((storedErrors) => (
-            <Alert key={storedErrors} className={classes.alert} severity="error">{storedErrors}</Alert>
+        {errors.map((storedErrors, index) => (
+            <Alert key={index} className={classes.alert} severity="error">{storedErrors}</Alert>
         ))}
         </Grid>
     );
