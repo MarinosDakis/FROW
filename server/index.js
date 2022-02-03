@@ -13,9 +13,7 @@ const designerRoutes = require('./routes/designers');
 const lineRoutes = require('./routes/lines');
 const productRoutes = require('./routes/products');
 
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("build"));
-}
+
 app.use(bodyParser.json({extended: true}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
