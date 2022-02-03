@@ -8,6 +8,7 @@ import Products from './components/Products/Products';
 import ContactForm from './components/ContactForm/ContactForm';
 import Designers from './components/Designers/Designers';
 import Success from './components/Payments/Success';
+import Payments from './components/Payments/Payments';
 
 const App = () => {
     return (
@@ -19,6 +20,7 @@ const App = () => {
                     <Route exact path='/login' element={<Login />} />
                     <Route exact path='/products' element={<Products />} />
                     <Route exact path='/designers' element={<Designers />} />
+                    <Route exact path='/payment' element={<Payments />} />
                     <Route exact path='/contactform' element={<ContactForm />} />
                     <Route exact path='/success' element={<Success />} />
                 </Routes>
