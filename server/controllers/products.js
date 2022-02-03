@@ -1,12 +1,32 @@
 const productsPost = require('../models/products/get');
+const mysqlConnection = require('mysql');
+
+const sqlConfiguration = {
+    host: "mock-project-db.cxxsoylsaete.us-east-1.rds.amazonaws.com",
+    user: "Team3",
+    port: 3306,
+    password: "Password#$",
+    database: "Demo"
+}
+
+const sqlEstablishConnection = mysqlConnection.createPool(sqlConfiguration);
 
 module.exports = {
     getDesignerLineProducts: (req, res) => {
-        res.send(JSON.stringify([
-            {"lineId": 1, "designerId": "3", "productPrice": 3000, "productTitle": "Nike Sneakers", "productDescription": "You can run for miles"},
-            {"lineId": 1, "designerId": "3", "productPrice": 321, "productTitle": "OnCloud running", "productDescription": "Feels like a cloud"},
-            {"lineId": 1, "designerId": "3", "productPrice": 543, "productTitle": "Adidas Shoes", "productDescription": "Adidas is okay to wear"},
-            {"lineId": 1, "designerId": "3", "productPrice": 1233, "productTitle": "Nike Free Runs", "productDescription": "Free runs are amazing!"},
-        ]));
+        const designerId = req.params.designerId;
+        const lineId = req.params.lineId;
+        const sqlStatement = `SELECT * FROM Outfits WHERE DesignerId=${designerId} AND LineId=${lineId}`;
+        
+        sqlEstablishConnection.query(sqlStatement, function (error, results) {
+            if (error) {
+                res.send("ERROR");
+            };
+            let designerResults = [];
+            results.forEach((items) => {
+                designerResults.push(items);
+            })
+     
+            res.send(JSON.stringify(designerResults));
+        });
     },
 };

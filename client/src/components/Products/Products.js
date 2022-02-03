@@ -89,11 +89,11 @@ function Products() {
 
         <Grid container spacing={4}>
           {designerProductData.map((product) => (
-            <Grid item key={product.id} xs={12} sm={6} md={4} lg={4}>
+            <Grid item key={product.OutfitId} xs={12} sm={6} md={4} lg={4}>
               <ProductShowcaseComponent
-                productName={product.productTitle}
-                productDescription={product.productDescription}
-                productPrice={product.productPrice}
+                productName={product.OutfitTitle}
+                productDescription={product.Description}
+                productPrice={product.Price}
                 productImg={dress} />
             </Grid>
           ))}

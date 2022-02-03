@@ -24,6 +24,7 @@ export default function Home() {
       let errors = 0;
       try{
           response = await axios.get("/frow/designers");
+          console.log(response);
       } catch(err){
           errors += 1;
       } finally {
@@ -74,8 +75,8 @@ export default function Home() {
           <Grid item xs={12}>
             <Grid container spacing={2} className={classes.grid}>
                 {designerData.map((data, index) => (
-                    <Grid onClick={() => viewDesigner(data.designerId, data.designerDescription, data.designerName)} item className={classes.grid} key={index} xs={12} sm={12} md={6} lg={6}>
-                      <ProfileBoxComponent name={data.designerName} />
+                    <Grid onClick={() => viewDesigner(data.DesignerId, data.Summary, data.Designer)} item className={classes.grid} key={index} xs={12} sm={12} md={6} lg={6}>
+                      <ProfileBoxComponent name={data.Designer} />
                     </Grid>
                 ))} 
             </Grid></Grid>

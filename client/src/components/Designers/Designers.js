@@ -82,8 +82,8 @@ export default function Designers() {
               <Grid item xs={12}>
                 <Grid container spacing={1} style={{paddingTop: '15px'}}>
                   {designerLineData.map((data, index) => (
-                    <Grid onClick={() => selectDesignerLine(data.lineId, data.lineTitle, data.lineSummary)} item key={index} xs={12} sm={12} md={12} lg={12} sx={{ marginBottom: 10 }}>
-                      <LineInfoComponent lineTitle={data.lineTitle} lineSummary={data.lineSummary} />
+                    <Grid onClick={() => selectDesignerLine(data.LineId, data.LineTitle, data.LineSummary)} item key={index} xs={12} sm={12} md={12} lg={12} sx={{ marginBottom: 10 }}>
+                      <LineInfoComponent lineTitle={data.LineTitle} lineSummary={data.LineSummary} />
                     </Grid>
                   ))}
                 </Grid>

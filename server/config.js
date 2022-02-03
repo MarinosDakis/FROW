@@ -1,14 +1,9 @@
-//  const sqlConfiguration = {
-//     host: process.env.RDS_ENDPOINT,
-//     user: process.env.RDS_USERNAME,
-//     port: process.env.RDS_PORT,
-//     password: process.env.RDS_PASSWORD
-// };
-const sqlConfiguration = {
-    host: "localhost",
-    user: "root",
-    password: "12345678",
-    database: "frow"
-}
- 
+ const sqlConfiguration = {
+    host: process.env.HOST,
+    user: process.env.USER,
+    port: process.env.PORT,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
+};
+
 module.exports = sqlConfiguration;
