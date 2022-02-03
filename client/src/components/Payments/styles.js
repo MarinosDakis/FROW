@@ -9,19 +9,20 @@ export default makeStyles((theme) => ({
     },
     paper: {
         backgroundColor: "white",
-        margin: "20px 0",
         borderRadius: 4,
-        border: "#7e7878 solid 1px",
-        boxShadow: "0 4px 5px 5px rgba(0, 0, 0, .2)",
         paddingBottom: 30,
-        minHeight: 400,
+        maxWidth: 400,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: theme.spacing(2),
     },
     text: {
         textAlign: "center",
     },
     svg: {
         '&.MuiSvgIcon-root': {
-            fontSize: 30,
+            fontSize: 80,
             textAlign: "center",
             marginBotton: 30,
         },
@@ -33,13 +34,19 @@ export default makeStyles((theme) => ({
             display: 'flex',
             justifyContent: 'center',
             flexDirection: "column",
-          },
-          card: {
+        },
+        card: {
             '&.MuiPaper-root': {
                 maxWidth: 300,
                 display: "flex",
                 justifyContent: "center",
             },
-          },
+        },
+        submit: {
+            '&.MuiButtonBase-root': {
+                backgroundColor: "black",
+                background: "black",
+            },
+        },
     },
 }));

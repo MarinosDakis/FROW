@@ -54,7 +54,7 @@ export default function Home() {
 
   return (
     <Box className={classes.root}>
-      <Paper variant="outlined" className={classes.paper}>
+      <Paper elevation={3} className={classes.paper}>
         <Grid>
           <Grid item className={classes.headerTopBottom}>
             <Typography className={classes.header}><b>Nashville Fashion Week</b></Typography>

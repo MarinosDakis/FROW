@@ -22,7 +22,7 @@ export default function DesignerDisplayComponent(props) {
       <CardMedia className={classes.root} component="img" height="140" image={profilePic} alt={`${designerName}-profile-pic`} />
       <CardContent className={classes.root}>
         <Typography gutterBottom variant="h5" component="div">{designerName}</Typography>
-        <Typography variant="body2" color="white">{designerSummary}</Typography>
+        <Typography variant="body2" color="white" style={{fontSize: 18}}>{designerSummary}</Typography>
       </CardContent>
     </Card>
   )

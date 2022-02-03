@@ -71,7 +71,7 @@ export default function Designers() {
   return (
     <Grid container>
       <Box className={classes.root} display="flex" justifyContent="center">
-        <Paper variant="outlined" className={classes.paper}>
+        <Paper elevation={3} className={classes.paper}>
           <Grid container>
             <Grid item xs={12}>
               <Box justifyContent="center" display="flex">

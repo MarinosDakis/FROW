@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Paper, Box, Typography, Card } from '@material-ui/core';
+import { Grid, Paper, Box, Typography, Card, Divider } from '@material-ui/core';
 import Errors from './Errors';
 import Success from './Success';
 import Input from '../Login/Input';
@@ -71,39 +71,31 @@ function Payments() {
 
     return (
         <Box className={classes.root}>
-            <Paper variant="outlined" className={classes.paper}>
-                <Grid container spacing={2}>
+            <Paper elevation={3} className={classes.paper}>
+                <Grid container spacing={2} style={{marginBottom: 15}}>
                     <Grid item xs={12}>
-                        <Box className={classes.brandContainer} justifyContent="center" display="flex">
+                        <Box textAlign="center" className={classes.brandContainer}>
                             <Typography className={classes.text} variant='h4'>{dummyData.lineName}</Typography>
                             <ShoppingCartIcon className={classes.svg} />
                         </Box>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs>
                         <Typography className={classes.text} variant='h6'>{`Price: $${dummyData.linePrice}`}</Typography>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs>
                         <Typography className={classes.text} variant='h6'>{`Quantity: ${dummyData.lineQuantity}`}</Typography>
                     </Grid>
                 </Grid>
 
                 <Grid className={classes.grid}>
-                    <form autoComplete="off" noValidate onSubmit={isValid() === false && console.log("hi")}>
-                        <div style={div_style}>
+                    <form className={classes.form} onSubmit={console.log(isValid())}>
+                        <Grid container spacing={2}>
                             {errors.length > 0 && <Errors className={classes.alert} errors={errors} />}
-                            <div style={column_style} >
-                                <Input placeholder="Credit Card Number" name="creditCardNumber" label="Credit Card Number" value={cardData.cardNumber} type="text" onChange={handleChange} autoFocus />
-                            </div>
-                            <div style={column_style} >
-                                <Input placeholder="Credit Card CSV" name="creditCardCsv" label="CSV" value={cardData.csv} type="password" onChange={handleChange} />
-                            </div>
-                            <div style={column_style}>
-                                <Input placeholder="Credit Card Expiration" name="creditCardExp" label="Exp. Date" value={cardData.expDate} type="text" onChange={handleChange} />
-                            </div>
-                            <div style={column_style}>
-                                <Button variant="contained" size="large" type="submit">Submit</Button>
-                            </div>
-                        </div>
+                            <Input name="creditCardNumber" label="Credit Card Number" handleChange={handleChange} autoFocus />
+                            <Input name="creditCardCSV" label="CSV" handleChange={handleChange} type="password" half />
+                            <Input name="creditCardExp" label="MM/YYYY" handleChange={handleChange} half />
+                            <Button style={{backgroundColor: "black"}} type="submit" variant='contained' fullWidth color="primary" className={classes.submit}>Purchase</Button>
+                        </Grid>
                     </form>
                 </Grid>
             </Paper>
