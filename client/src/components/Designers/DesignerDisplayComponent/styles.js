@@ -14,7 +14,6 @@ export default makeStyles((theme) => ({
             width: 250,
         },
         '&.MuiCardContent-root': {
-<<<<<<< Updated upstream
             minWidth: 100,
         },
         [theme.breakpoints.down("xs")]: {
@@ -23,10 +22,4 @@ export default makeStyles((theme) => ({
             },
         },
     }
-=======
-            minWidth: 300,
-        }
-
-    },
->>>>>>> Stashed changes
 }));
