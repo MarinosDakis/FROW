@@ -7,7 +7,7 @@ export default makeStyles((theme) => ({
         '&.MuiPaper-root': {
             display: "flex",
             margin: 20,
-            borderRadius: 30,
+            borderRadius: 10,
         },
         '&.MuiCardMedia-root': {
             height: 250,

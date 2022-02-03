@@ -40,6 +40,9 @@ export default function Home() {
   }
 
   useEffect(() => {
+      dispatch(setCurrentDesignerId(0));
+      dispatch(setCurrentDesignerDescription(''));
+      dispatch(setCurrentDesignerName(''));
       setRetrieveDesignerDataError(0);
       setLoading(1);
       getDesigners();

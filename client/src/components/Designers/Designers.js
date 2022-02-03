@@ -78,9 +78,9 @@ export default function Designers() {
                 <DesignerDisplayComponent designerName={currentDesignerName} designerSummary={currentDesignerDescription} />
               </Box>
             </Grid>
-            {loading ? <Grid item xs={12}><CircularProgress /></Grid> :
-              <Grid item xs={12}>
-                <Grid container spacing={1} style={{ paddingTop: '15px' }}>
+            {loading ? <Grid item xs={12} style={{marginTop: '30px', textAlign: 'center'}}><CircularProgress sx={{color: '#7e7878'}} /></Grid> :
+              <Grid item xs={12} style={{marginBottom: '0', paddingBottom: '0'}}>
+                <Grid container spacing={1} style={{ paddingTop: '15px', marginBottom: '0', paddingBottom: '0'}}>
                   {designerLineData.map((data, index) => (
                     <Grid onClick={() => selectDesignerLine(data.LineId, data.LineTitle, data.LineSummary)} item key={index} xs={12} sm={12} md={12} lg={12} sx={{ marginBottom: 10 }}>
                       <LineInfoComponent lineTitle={data.LineTitle} lineSummary={data.LineSummary} />
@@ -88,8 +88,8 @@ export default function Designers() {
                   ))}
                 </Grid>
               </Grid>}
-            <Grid item xs={12}>
-              <Button onClick={goBackToAllDesigners} className={classes.root} variant="contained" startIcon={<ArrowBackIcon />}>Back to All Designers</Button>
+            <Grid item xs={12} style={{marginTop: '0', paddingTop: '0', marginBottom: '0', paddingBottom: '0'}}>
+              <Button style={{width: '100%', boxShadow: 'none', marginBottom: '0', backgroundColor: 'black', color: 'white'}} onClick={goBackToAllDesigners} className={classes.root} variant="contained" startIcon={<ArrowBackIcon />}>Back to All Designers</Button>
             </Grid>
           </Grid>
         </Paper>
