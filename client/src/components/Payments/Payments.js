@@ -6,10 +6,11 @@ import Input from '../Login/Input';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import useStyles from "./styles";
 import { useSelector, useDispatch } from 'react-redux';
+import CancelIcon from '@mui/icons-material/Cancel';
 import { Button } from '@material-ui/core';
 import {
     setCost, setServiceLinesForPurchase, decrementCost,
-    incrementCost, incrementItems
+    incrementCost, incrementItems, decrementItems
   } from '../../store/frowSlice';  
 
 function Payments() {
@@ -26,6 +27,7 @@ function Payments() {
     const serviceLinesForPurchase = useSelector((state) => state.frowCounter.serviceLinesForPurchase);
     const cost = useSelector((state) => state.frowCounter.cost);
     const [lineData, setLineData] = useState(null);
+    const dispatch = useDispatch();
     const [cardData, setCardData] = useState({ cardNumber: "", expDate: "", csv: "" });
     const [SuccessPageValue, setSuccessPageValue] = useState(false);
     const classes = useStyles();
@@ -43,6 +45,22 @@ function Payments() {
         setLineData(dummyData);
         console.log(serviceLinesForPurchase);
     }, []);
+     
+    function removeCartItem(indexes){
+        const serviceLinesForPurchaseTemp = [...serviceLinesForPurchase];
+        const newPurchases = [];
+        serviceLinesForPurchaseTemp.forEach((currentLine, index) => {
+            if(index !== indexes){
+                newPurchases.push(currentLine);
+            }
+            else{
+                dispatch(decrementCost(Number(currentLine.total)));
+            }
+        });
+        
+        dispatch(setServiceLinesForPurchase(newPurchases));
+        dispatch(decrementItems(1));
+    }
 
     if (lineData === null) return null;
 
@@ -99,10 +117,13 @@ function Payments() {
                 <Grid container spacing={2}>
                     <Grid item xs={12} style={{marginTop: '30px'}}>
                         <h1 style={{paddingLeft: '40px'}}>Shopping Cart</h1>
-                        {serviceLinesForPurchase.map((cartItem) => {
+                        {serviceLinesForPurchase.map((cartItem, index) => {
                            return(
-                            <Grid item xs={12} style={{backgroundColor: 'black', color: 'white', margin: '10px 40px', borderRadius: '6px', padding: '5px 5px'}}>
-                                <h3 style={{textAlign: 'center', backgroundColor: 'grey'}}>{cartItem.line}</h3>
+                            <Grid item xs={12} key={index} style={{backgroundColor: 'black', color: 'white', margin: '10px 40px', borderRadius: '6px', padding: '5px 5px'}}>
+                                <Grid item xs={12} style={{marginLeft: '0'}}>
+                                        <Button onClick={() => removeCartItem(index)} style={{color: 'white', fontSize: '.9em', textAlign: 'left'}}><CancelIcon /></Button>
+                                    </Grid>
+                                <h3 style={{textAlign: 'center', backgroundColor: 'grey', marginTop: '0'}}>{cartItem.line}</h3>
                                 <Grid container style={{textAlign: 'center'}}>
                                     <Grid item xs={6}>
                                         <p style={{marginTop: '0'}}><b>Quantity</b>: {cartItem.itemCount}</p>
@@ -114,7 +135,7 @@ function Payments() {
                             </Grid>)
                         })}
                         <Grid item xs={12} style={{marginBottom: '50px'}}>
-                            <h2 style={{paddingLeft: '40px'}}>Grand Total: ${cost}</h2>
+                            <h2 style={{paddingLeft: '40px'}}>Grand Total: ${cost.toFixed(2)}</h2>
                         </Grid>
                     </Grid>
                 </Grid>
