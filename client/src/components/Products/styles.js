@@ -9,5 +9,9 @@ export default makeStyles((theme) => ({
   },
   root: {
     flexGrow: 1,
+    "&.MuiButton-contained": {
+      color: "black",
+      backgroundColor: "white",
+  },
   },
 }));

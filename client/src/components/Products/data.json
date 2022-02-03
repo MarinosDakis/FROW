@@ -40,6 +40,19 @@
         "img": "./images/ivory-dress.jpeg",
         "desc": "This is the description",
         "price": 6000
+    },
+    {
+        "id": 7,
+        "title": "Title",
+        "img": "./images/ivory-dress.jpeg",
+        "desc": "This is the description",
+        "price": 5000
+    },
+    {
+        "id": 8,
+        "title": "Title",
+        "img": "./images/ivory-dress.jpeg",
+        "desc": "This is the description",
+        "price": 6000
     }
-
 ]
