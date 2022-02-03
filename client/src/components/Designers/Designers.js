@@ -1,8 +1,32 @@
-import React from 'react';
-import { Grid, Paper, Box, Typography } from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
+import { Grid, Paper, Box } from '@material-ui/core';
 import useStyles from "./styles";
 import DesignerDisplayComponent from './DesignerDisplayComponent/DesignerDisplayComponent';
 import LineInfoComponent from './LineInfoComponent/LineInfoComponent';
+
+/*
+const axios = require('axios');
+
+export default function Designer(props) {
+const classes = useStyles();
+//Use States
+const [designerName, setDesignerName] = useState('');
+const [designerDesciption, setDesignerDescription] = useState('');
+const [lines, setLines] = useState('');
+
+//return designer name and description
+async function getDesigner(id){
+let responce = await axios.get('/frow/designers/${id}');
+setDesignerName(response.designerName);
+setDesignerDescription(response.designerDescription);
+}
+
+//return designer lines
+async function getLines(id){
+let responce = await axios.get('/frow/designers/${id}');
+setLines(lines => [...response]);
+}
+*/
 
 const dummyLine = [
   {
@@ -23,7 +47,14 @@ const dummyDesigner =
 }
 
 export default function Designers() {
+  const [designerData, setDesignerData] = useState(null);
   const classes = useStyles();
+
+  useEffect(() => {
+    setDesignerData(dummyLine);
+  }, []);
+
+  if (designerData === null) return null;
 
   return (
     <Box className={classes.root}>

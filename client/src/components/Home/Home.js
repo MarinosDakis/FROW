@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Paper, Box, Typography } from '@material-ui/core';
 import Divider from '@mui/material/Divider';
 import ProfileBoxComponent from './ProfileBoxComponent/ProfileBoxComponent.js';
@@ -7,7 +7,14 @@ import { dummyData } from './dummyData.js'
 import useStyles from "./styles";
 
 export default function Home() {
+  const [designerData, setDesignerData] = useState(null);
   const classes = useStyles();
+
+  useEffect(() => {
+    setDesignerData(dummyData);
+  }, []);
+
+  if (designerData === null) return null;
 
   return (
     <Box className={classes.root}>
@@ -27,7 +34,7 @@ export default function Home() {
           </Grid>
           <Grid item>
             <Grid container spacing={2} className={classes.grid}>
-              {dummyData.map((data, index) => (
+              {designerData.map((data, index) => (
                 <Grid item className={classes.grid} key={index} xs={12} sm={12} md={6} lg={6}>
                   <ProfileBoxComponent name={data.designer} />
                 </Grid>

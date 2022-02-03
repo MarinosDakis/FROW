@@ -2,12 +2,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
 
-header:{
-    fontSize: 40,
-    display: "flex",
-    justifyContent: "center",
-    marginTop: 40,
-},
 root: {
     marginTop: 100,
     padding: theme.spacing(1),
@@ -19,6 +13,12 @@ paper: {
     border: "#7e7878 solid 1px",
     boxShadow: "0 4px 5px 5px rgba(0, 0, 0, .2)",
     height: 500,
+},
+header:{
+    fontSize: 40,
+    display: "flex",
+    justifyContent: "center",
+    marginTop: 40,
 },
 grid: {
     display: "Flex",
@@ -34,6 +34,10 @@ Paragraph:{
     justifyContent: "center",
     marginTop: 30,
 },
+headerTopBottom: {
+    marginTop: 30,
+    marginBottom: 30,
+}
 })
 
 );

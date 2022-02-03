@@ -15,7 +15,7 @@ export default makeStyles((theme) => ({
         minWidth: 350,
         cursor: "pointer",
         '&:hover': {
-            background: "#9066e7",
+            background: "#f2f2f2e0",
         },
         textDecoration: "none",
     }
