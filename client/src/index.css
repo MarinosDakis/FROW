@@ -5,6 +5,10 @@ body {
     /*#d3b1d5*/
 }
 
+MuiTypography-root {
+    font-family: 'Montserrat', sans-serif;
+}
+
 body::-webkit-scrollbar {
     display: none; /* chrome */
     -ms-overflow-style: none;  /* IE and Edge */
