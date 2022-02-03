@@ -14,8 +14,8 @@ export default function DesignerDisplayComponent(props) {
   return (
     <Card component={Link} to="/products" className={classes.root}>
       <CardContent className={classes.root}>
-        <Typography textAlign="center" gutterBottom variant="h4">{lineTitle}</Typography>
-        <Typography textAlign="center" gutterBottom variant="h6">{lineSummary}</Typography>
+        <Typography textAlign="center" gutterBottom variant="h5" style={{marginBottom: '0'}}>{lineTitle}</Typography>
+        <Typography textAlign="center" gutterBottom variant="h6" style={{marginBottom: '0', marginTop: '0'}}>{lineSummary}</Typography>
       </CardContent>
     </Card>
   )

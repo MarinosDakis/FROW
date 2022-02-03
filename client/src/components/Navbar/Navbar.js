@@ -5,10 +5,25 @@ import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
 import useStyles from "./styles";
 import FrowLogo from "../../images/frow_logo.png";
+import Badge from '@mui/material/Badge';
+import { useSelector } from 'react-redux';
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+ 
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: '0 4px',
+  },
+}));
 
 const Navbar = () => {
-  const classes = useStyles();
 
+  const classes = useStyles();
+  const itemsPurchased = useSelector((state) => state.frowCounter.itemsPurchased);
   /*
   //default user is information we stored in local storage from google sign in
   const [user, setUser] = true;
@@ -48,11 +63,17 @@ const Navbar = () => {
   return (
     <AppBar className={classes.appBar}>
       <Box className={classes.brandContainer}>
-        <Typography className={classes.heading} component={Link} to="/" variant="h2" align="center">FROW</Typography>
+        <Typography className={classes.heading} component={Link} to="/" variant="h3" align="center">FROW</Typography>
         <img src={FrowLogo} alt="logo" className={classes.image} height="60"></img>
       </Box>
       <Box>
+        <Button component={Link} to="/" variant="contained" style={{marginRight: '10px'}} className={classes.button}>Designers</Button>
         <Button component={Link} to="/login" variant="contained" className={classes.button}>Sign In</Button>
+        <IconButton component={Link} to="/payment" style={{marginLeft: '8px', color: 'black'}} aria-label="cart">
+            <StyledBadge badgeContent={itemsPurchased} color="secondary">
+              <ShoppingCartIcon />
+            </StyledBadge>
+        </IconButton>
       </Box>
     </AppBar>
   );

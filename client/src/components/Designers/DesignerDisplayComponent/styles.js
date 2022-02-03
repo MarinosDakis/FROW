@@ -2,6 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     root: {
+        backgroundColor: 'black',
+        color: 'white',
         '&.MuiPaper-root': {
             display: "flex",
             margin: 20,
@@ -12,6 +14,7 @@ export default makeStyles((theme) => ({
             width: 250,
         },
         '&.MuiCardContent-root': {
+<<<<<<< Updated upstream
             minWidth: 100,
         },
         [theme.breakpoints.down("xs")]: {
@@ -20,4 +23,10 @@ export default makeStyles((theme) => ({
             },
         },
     }
+=======
+            minWidth: 300,
+        }
+
+    },
+>>>>>>> Stashed changes
 }));

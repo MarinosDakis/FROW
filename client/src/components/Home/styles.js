@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     root: {
-        marginTop: 100,
+        marginTop: '15%',
         padding: theme.spacing(1),
         justifyContent: "center",
         display: "flex",
@@ -14,7 +14,11 @@ export default makeStyles((theme) => ({
     paper: {
         backgroundColor: "white",
         margin: "20px 0",
+<<<<<<< Updated upstream
         borderRadius: 4,
+=======
+        borderRadius: 6,
+>>>>>>> Stashed changes
         border: "#7e7878 solid 1px",
         boxShadow: "0 4px 5px 5px rgba(0, 0, 0, .2)",
         maxWidth: 700,
@@ -24,6 +28,27 @@ export default makeStyles((theme) => ({
         fontSize: 30,
         display: "flex",
         justifyContent: "center",
+    },
+    loadContainer: {
+        textAlign: 'center'
+    },
+    header2: {
+        fontSize: 20,
+        display: "flex",
+        justifyContent: "center",
+    },
+    header3: {
+        marginBottom: '45px',
+        fontSize: 25,
+        display: "flex",
+        justifyContent: "center",
+    },
+    header4: {
+        fontSize: 20,
+        marginBottom: '20px',
+        display: "flex",
+        justifyContent: "center",
+        textAlign: 'center'
     },
     grid: {
         display: "flex",
@@ -36,7 +61,11 @@ export default makeStyles((theme) => ({
     },
     headerTopBottom: {
         marginTop: 30,
-        marginBottom: 30,
+        marginBottom: 0,
+    },
+    headerTopMid: {
+        marginTop: 10,
+        marginBottom: 0,
     }
 
 }));
