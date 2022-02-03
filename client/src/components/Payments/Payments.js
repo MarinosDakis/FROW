@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Paper, Box, Typography, Card } from '@material-ui/core';
+import { Grid, Paper, Box, Typography, Card, Input } from '@material-ui/core';
 import Errors from './Errors';
 import Success from './Success';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -7,6 +7,16 @@ import useStyles from "./styles";
 import { Button } from '@material-ui/core';
 
 function Payments() {
+
+    const column_style = {
+        marginBottom: 15
+      };
+
+      const div_style = {
+        display: "grid",
+        justifyContent: "center",
+      };
+
     const [lineData, setLineData] = useState(null);
     const [cardData, setCardData] = useState({ cardNumber: "", expDate: "", csv: "" });
     const [SuccessPageValue, setSuccessPageValue] = useState(false);
@@ -80,13 +90,31 @@ function Payments() {
                 </Grid>
 
                 <Card>
-                    <form autoComplete="off" noValidate onSubmit={isValid() === false && console.log("hi")}>
+
+                <Grid className={classes.grid}>
+                <form autoComplete="off" noValidate onSubmit={isValid() === false && console.log("hi")}>
                         {errors.length > 0 && <Errors className={classes.alert} errors={errors} />}
-                        <input name="creditCardNumber" label="Credit Card Number" value={cardData.cardNumber} type="password" onChange={handleChange} autoFocus />
-                        <input name="creditCardCsv" label="CSV" value={cardData.csv} type="password" onChange={handleChange} />
-                        <input name="creditCardExp" label="Confirm New Password" value={cardData.expDate} type="text" onChange={handleChange} />
-                        <Button variant="contained" size="large" type="submit">Submit</Button>
+                        <div style={div_style}>
+                            <div style={column_style} >
+                                <Input placeholder="Credit Card Number" name="creditCardNumber" label="Credit Card Number" value={cardData.cardNumber} type="password" onChange={handleChange} autoFocus />
+                            </div>
+                            <div style={column_style} >
+                                <Input placeholder="Credit Card CSV" name="creditCardCsv" label="CSV" value={cardData.csv} type="password" onChange={handleChange} />
+                            </div>
+                            <div style={column_style}>
+                                <Input placeholder="Credit Card Expiration" name="creditCardExp" label="Confirm New Password" value={cardData.expDate} type="text" onChange={handleChange} />
+                            </div>
+                            <div style={column_style}>
+                                <Button variant="contained" size="large" type="submit">Submit</Button>
+                            </div>
+                        </div>
                     </form>
+                    </Grid>
+
+
+
+
+                    
                 </Card>
 
             </Paper>
