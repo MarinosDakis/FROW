@@ -11,7 +11,7 @@ export default function ProfileBoxComponent(props) {
 
     // TOADD
     return (
-        <Card component={Link} to="/designers" sx={{ maxWidth: 345 }} className={classes.card}>
+        <Card component={Link} to="/designers" sx={{ maxWidth: 345}} className={classes.card}>
             <CardHeader
                 avatar={<Avatar src={profilePic} aria-label={`${name}-profile-pic`} />}
                 title={name}

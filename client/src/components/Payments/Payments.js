@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Paper, Box, Typography, Card, Input } from '@material-ui/core';
+import { Grid, Paper, Box, Typography, Card, Divider } from '@material-ui/core';
 import Errors from './Errors';
-import Success from './Success';
+import { useNavigate } from "react-router-dom";
+import Input from '../Login/Input';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import useStyles from "./styles";
+import { useSelector, useDispatch } from 'react-redux';
+import CancelIcon from '@mui/icons-material/Cancel';
 import { Button } from '@material-ui/core';
+import { Navigate } from 'react-router-dom';
+import { setCost, setServiceLinesForPurchase, decrementCost, incrementCost, incrementItems, decrementItems } from '../../store/frowSlice';
 
 function Payments() {
 
@@ -17,11 +22,16 @@ function Payments() {
         justifyContent: "center",
     };
 
+    const serviceLinesForPurchase = useSelector((state) => state.frowCounter.serviceLinesForPurchase);
+    const cost = useSelector((state) => state.frowCounter.cost);
     const [lineData, setLineData] = useState(null);
+    const dispatch = useDispatch();
     const [cardData, setCardData] = useState({ cardNumber: "", expDate: "", csv: "" });
     const [SuccessPageValue, setSuccessPageValue] = useState(false);
     const classes = useStyles();
+    var totalQuantity = 0;
     var errors = [];
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setCardData({ ...setCardData, [e.target.name]: e.target.value });
@@ -33,7 +43,24 @@ function Payments() {
 
     useEffect(() => {
         setLineData(dummyData);
+        console.log(serviceLinesForPurchase);
     }, []);
+
+    function removeCartItem(indexes) {
+        const serviceLinesForPurchaseTemp = [...serviceLinesForPurchase];
+        const newPurchases = [];
+        serviceLinesForPurchaseTemp.forEach((currentLine, index) => {
+            if (index !== indexes) {
+                newPurchases.push(currentLine);
+            }
+            else {
+                dispatch(decrementCost(Number(currentLine.total)));
+            }
+        });
+
+        dispatch(setServiceLinesForPurchase(newPurchases));
+        dispatch(decrementItems(1));
+    }
 
     if (lineData === null) return null;
 
@@ -64,52 +91,66 @@ function Payments() {
 
         // if there's errors return false, otherwise return true
         if (errorCount > 0) return false;
-        if (errorCount) return true;
+        if (errorCount) handleSuccessPageValue();
 
     }
 
     return (
         <Box className={classes.root}>
-            <Paper variant="outlined" className={classes.paper}>
-                <Grid>
-                    <Box justifyContent="center" display="flex">
-                        <ShoppingCartIcon className={classes.svg} />
-                    </Box>
-                </Grid>
-
+            <Paper elevation={3} className={classes.paper}>
                 <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                        <Typography className={classes.text} variant='h4'>{dummyData.lineName}</Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Typography className={classes.text} variant='h6'>{`Price: $${dummyData.linePrice}`}</Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Typography className={classes.text} variant='h6'>{`Quantity: $${dummyData.lineQuantity}`}</Typography>
+                    <Grid item xs={12} style={{ marginTop: '30px' }}>
+                        <Box textAlign="center" className={classes.brandContainer}>
+                            <Typography className={classes.text} variant='h4'>Shopping Cart</Typography>
+                            <ShoppingCartIcon className={classes.svg} />
+                        </Box>
+                        <Paper variant="outlined" className={classes.paper}>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} style={{ marginTop: '30px' }}>
+                                    {serviceLinesForPurchase.map((cartItem, index) => {
+                                        totalQuantity += cartItem.itemCount;
+
+                                        return (
+                                            <Grid item xs={12} key={index} style={{ backgroundColor: 'black', color: 'white', margin: '10px 40px', borderRadius: '6px', padding: '5px 5px' }}>
+                                                <Grid item xs={12} style={{ marginLeft: '0' }}>
+                                                    <Button onClick={() => removeCartItem(index)} style={{ color: 'white', fontSize: '.9em', textAlign: 'left' }}><CancelIcon /></Button>
+                                                </Grid>
+                                                <h3 style={{ textAlign: 'center', backgroundColor: 'grey', marginTop: '0' }}>{cartItem.line}</h3>
+                                                <Grid container style={{ textAlign: 'center' }}>
+                                                    <Grid item xs={6}>
+                                                        <p style={{ marginTop: '0' }}><b>Quantity</b>: {cartItem.itemCount}</p>
+                                                    </Grid>
+                                                    <Grid item xs={6}>
+                                                        <p style={{ marginTop: '0' }}><b>Amount: </b>${cartItem.total}</p>
+                                                    </Grid>
+                                                </Grid>
+                                            </Grid>
+                                        )
+                                    })}
+
+                                    <Grid item xs>
+                                        <Typography className={classes.text} variant='h6'>{`Total: $${Number(cost).toFixed(2)}`}</Typography>
+                                    </Grid>
+                                    <Grid item xs>
+                                        <Typography className={classes.text} variant='h6'>{`Quantity: ${totalQuantity}`}</Typography>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+
+                            <Grid className={classes.grid}>
+                                <form className={classes.form}>
+                                    <Grid container spacing={2}>
+                                        {errors.length > 0 && <Errors className={classes.alert} errors={errors} />}
+                                        <Input name="creditCardNumber" label="Credit Card Number" handleChange={handleChange} autoFocus />
+                                        <Input name="creditCardCSV" label="CSV" handleChange={handleChange} type="password" half />
+                                        <Input name="creditCardExp" label="MM/YYYY" handleChange={handleChange} half />
+                                        <Button style={{ backgroundColor: "black" }} type="submit" variant='contained' fullWidth color="primary" className={classes.submit} onClick={() => navigate('/success')}>Purchase</Button>
+                                    </Grid>
+                                </form>
+                            </Grid>
+                        </Paper>
                     </Grid>
                 </Grid>
-
-                <Card>
-                    <Grid className={classes.grid}>
-                        <form autoComplete="off" noValidate onSubmit={isValid() === false && console.log("hi")}>
-                            {errors.length > 0 && <Errors className={classes.alert} errors={errors} />}
-                            <div style={div_style}>
-                                <div style={column_style} >
-                                    <Input placeholder="Credit Card Number" name="creditCardNumber" label="Credit Card Number" value={cardData.cardNumber} type="password" onChange={handleChange} autoFocus />
-                                </div>
-                                <div style={column_style} >
-                                    <Input placeholder="Credit Card CSV" name="creditCardCsv" label="CSV" value={cardData.csv} type="password" onChange={handleChange} />
-                                </div>
-                                <div style={column_style}>
-                                    <Input placeholder="Credit Card Expiration" name="creditCardExp" label="Confirm New Password" value={cardData.expDate} type="text" onChange={handleChange} />
-                                </div>
-                                <div style={column_style}>
-                                    <Button variant="contained" size="large" type="submit">Submit</Button>
-                                </div>
-                            </div>
-                        </form>
-                    </Grid>
-                </Card>
             </Paper>
         </Box>
     );

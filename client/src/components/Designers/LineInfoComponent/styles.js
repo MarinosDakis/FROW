@@ -4,7 +4,10 @@ export default makeStyles((theme) => ({
     root: {
         '&.MuiPaper-root': {
             display: "flex",
-            margin: "0px 50px",
+            height: '100%',
+            backgroundColor: 'black',
+            color: 'white',
+            margin: "0px 20px",
             justifyContent: "center",
             cursor: "pointer",
             backgroundColor: "black",

@@ -13,7 +13,7 @@ export default makeStyles((theme) => ({
             },
         },
         '& .MuiTypography-root': {
-            fontSize: 20,
+            fontSize: 17,
         },
     },
     card: {

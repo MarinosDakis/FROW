@@ -8,6 +8,7 @@ export default makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
   root: {
+    marginTop: 100,
     flexGrow: 1,
     "&.MuiButton-contained": {
       color: "black",
@@ -22,4 +23,16 @@ export default makeStyles((theme) => ({
       marginTop: 10,
     },
   },
+  button: {
+    padding: theme.spacing(1),
+    flexGrow: 1,
+    justifyContent: "center",
+    display: "flex",
+
+    "&.MuiButton-contained": {
+        color: "black",
+        backgroundColor: "white",
+        width: "100%",
+    },
+  }
 }));

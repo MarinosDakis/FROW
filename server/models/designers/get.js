@@ -1,19 +1,24 @@
 const mysqlConnection = require('mysql');
-const sqlConfiguration = require('../../config');
 
-const sqlEstablishConnection = mysqlConnection.createConnection(sqlConfiguration);
+const sqlConfiguration = {
+  host: "localhost",
+  user: "root",
+  password: "12345678",
+  database: "frow"
+}
+ 
+const sqlEstablishConnection = mysqlConnection.createPool(sqlConfiguration);
 
 const getAllUsers = () => {
-    sqlEstablishConnection.connect(function(err) {
-        if (err) {
-          console.error('Database connection failed: ' + err.stack);
-          return "ERROR";
-        }
-      
-        return "SUCCESS";
-      });
-      
-      sqlEstablishConnection.end();
+
+  
+  const sqlStatement = "SELECT * FROM designers";
+
+  const query = sqlEstablishConnection.query(sqlStatement, function (error, results, fields) {
+      if (error) return "ERROR";
+  });
+
+
 };
 
 module.exports.getAllUsers = getAllUsers;
